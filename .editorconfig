@@ -1,0 +1,19 @@
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.cs]
+indent_size = 4
+csharp_space_between_method_call_parameter_list_parentheses = true
+
+[*.ts]
+indent_size = 4
+
+[*.js]
+indent_size = 2
+
+[*.xml]
+indent_style = space
