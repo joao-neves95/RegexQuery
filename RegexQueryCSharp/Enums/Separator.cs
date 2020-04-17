@@ -10,9 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RegexQueryCSharp
+namespace RegexQueryCSharp.Enums
 {
-    public interface IRegexQuery
+    public enum Separator
     {
+        Dot,
+        ForwardSlash,
+        Minus,
+        All
     }
 }
