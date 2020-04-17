@@ -13,7 +13,12 @@ using RegexQueryCSharp.Interfaces;
 
 namespace RegexQueryCSharp
 {
-    public class RegexQuery /* : IRegexQuery */
+    internal class Example
     {
+        private void Main()
+        {
+            //IRegexQuery regexQuery1 = new RegexQuery().ADate()
+            //                                          .FollowedBy( RegexExpressions.Space );
+        }
     }
 }
