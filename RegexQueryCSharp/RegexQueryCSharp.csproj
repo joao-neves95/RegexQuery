@@ -4,6 +4,15 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>RegexQuery</RootNamespace>
     <AssemblyName>RegexQuery</AssemblyName>
+    <Authors>João Neves (SHIVAYL)</Authors>
+    <Copyright>João Pedro Martins Neves</Copyright>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/joao-neves95/RegexQuery</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/joao-neves95/RegexQuery</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>regex</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +23,13 @@
     <Reference Include="Bridge">
       <HintPath>..\BridgeDLL\bin\Debug\Bridge.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

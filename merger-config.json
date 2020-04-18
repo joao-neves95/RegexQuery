@@ -1,0 +1,23 @@
+{
+	"uglify": true,
+	"mergerJsLinks": {
+		"npm": "https://www.npmjs.com/package/merger-js",
+		"github": "https://github.com/joao-neves95/merger-js",
+		"readme": "https://github.com/joao-neves95/merger-js/blob/master/README.md",
+		"changelog": "https://github.com/joao-neves95/merger-js/blob/master/CHANGELOG.md"
+	},
+	"autoBuild": false,
+	"notifications": false,
+	"updateOnLaunch": true,
+	"lastUpdateCheck": "2020-04-18T19:25:25.000Z",
+	"sourceFiles": [
+		{
+			"source": "D:\\joao9\\odrive\\ISTEC\\DEV\\RegexQuery\\RegexQueryJS\\dist\\RegexQuery.header.js",
+			"output": {
+				"path": "D:\\joao9\\odrive\\ISTEC\\DEV\\RegexQuery\\RegexQueryJS\\dist\\",
+				"name": "RegexQuery.min.js"
+			},
+			"config": null
+		}
+	]
+}
