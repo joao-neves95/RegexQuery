@@ -7,14 +7,15 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Text;
-using RegexQuery.Interfaces;
-using RegexQuery.Enums;
 using System.Text.RegularExpressions;
+using Bridge;
+using RegexQuery.Enums;
 
 namespace RegexQuery.Constants
 {
+    [Namespace( false )]
+    [Module( ModuleType.UMD, Name = "Separators" )]
     public static class Separators
     {
         // #regions SEPARATORS

@@ -6,12 +6,12 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Bridge;
 
 namespace RegexQuery.Enums
 {
+    [Namespace( false )]
+    [Module( ModuleType.UMD, Name = "Separator" )]
     public enum Separator
     {
         Dot,

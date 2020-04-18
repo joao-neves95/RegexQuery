@@ -10,12 +10,10 @@ using Bridge;
 using RegexQuery.Constants;
 using RegexQuery.Interfaces;
 
-//[assembly: Module( ModuleType.UMD, "RegexQuery" )]
 [assembly: Module(ModuleType.UMD, true,Name ="RegexQuery")]
 namespace RegexQuery
 {
     [Namespace(false)]
-    [Module( ModuleType.UMD, Name = "RegexQuery" )]
     // Implements IRegexQueryActions
     public partial class RegexQuery : IRegexQuery
     {
@@ -27,6 +25,11 @@ namespace RegexQuery
         private bool _openedGroup;
 
         public string Query { get; private set; }
+
+        public override string ToString()
+        {
+            return Query;
+        }
 
         public IRegexQuery BeginningOfString()
         {

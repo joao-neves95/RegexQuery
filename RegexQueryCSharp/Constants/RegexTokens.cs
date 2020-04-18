@@ -10,6 +10,7 @@ using Bridge;
 
 namespace RegexQuery.Constants
 {
+    [Namespace( false )]
     [Module( ModuleType.UMD, Name = "RegexTokens" )]
     public static class RegexTokens
     {

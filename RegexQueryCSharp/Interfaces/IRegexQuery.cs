@@ -18,8 +18,8 @@ using Bridge;
 
 namespace RegexQuery.Interfaces
 {
-    [Module( ModuleType.UMD, Name = "RegexQuery" )]
     [Namespace( false )]
+    [Module( ModuleType.UMD, Name = "RegexQuery" )]
     public interface IRegexQuery :
         IRegexQueryActions,
         IRegexQueryTokens,

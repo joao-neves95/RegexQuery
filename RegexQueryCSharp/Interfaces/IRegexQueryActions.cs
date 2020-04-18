@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2020 João Pedro Martins Neves (SHIVAYL) - All Rights Reserved.
+ *
+ * RegexQuery and all its contents are licensed under the GNU General Public License v3.0
+ * (GPL-3.0), located in the root folder, under the name "LICENSE.md".
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,6 +14,8 @@ namespace RegexQuery.Interfaces
 {
     public interface IRegexQueryActions
     {
+        string ToString();
+
         /// <summary>
         ///
         /// A string beginning with ("^").
@@ -16,7 +26,7 @@ namespace RegexQuery.Interfaces
 
         IRegexQuery EndOfString();
 
-        IRegexQuery Group(string content);
+        IRegexQuery Group( string content );
 
         IRegexQuery BeginGroup();
 
@@ -28,9 +38,9 @@ namespace RegexQuery.Interfaces
         ///
         /// </summary>
         /// <param name="characters"></param>
-        IRegexQuery AnyOf(char[] characters);
+        IRegexQuery AnyOf( char[] characters );
 
-        IRegexQuery AnyOf(string characters);
+        IRegexQuery AnyOf( string characters );
 
         /// <summary>
         ///
@@ -39,11 +49,11 @@ namespace RegexQuery.Interfaces
         /// </summary>
         /// <param name="characters"></param>
         /// <returns></returns>
-        IRegexQuery NotAnyOf(char[] characters);
+        IRegexQuery NotAnyOf( char[] characters );
 
-        IRegexQuery CharsBetween(char fromChar, char toChar);
+        IRegexQuery CharsBetween( char fromChar, char toChar );
 
-        IRegexQuery ButOnly(uint quantity);
+        IRegexQuery ButOnly( uint quantity );
 
         IRegexQuery ButOnlyOne();
 
@@ -53,9 +63,9 @@ namespace RegexQuery.Interfaces
 
         IRegexQuery ButOnlyOneOrMore();
 
-        IRegexQuery ButOnlyBetween(uint fromCount, uint toCount);
+        IRegexQuery ButOnlyBetween( uint fromCount, uint toCount );
 
-        IRegexQuery ButOnlyMoreThan(uint quantity);
+        IRegexQuery ButOnlyMoreThan( uint quantity );
 
         IRegexQuery Or();
 
@@ -66,7 +76,7 @@ namespace RegexQuery.Interfaces
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        IRegexQuery FollowedBy(string content);
+        IRegexQuery FollowedBy( string content );
 
         /// <summary>
         ///
@@ -75,7 +85,7 @@ namespace RegexQuery.Interfaces
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        IRegexQuery NotFollowedBy(string content);
+        IRegexQuery NotFollowedBy( string content );
 
         IRegexQuery BeginFollowedBy();
 
