@@ -17,8 +17,9 @@ namespace RegexQueryCSharp
     {
         private void Main()
         {
-            //IRegexQuery regexQuery1 = new RegexQuery().ADate()
-            //                                          .FollowedBy( RegexExpressions.Space );
+            string regexQuery1 = new RegexQuery().ADate()
+                                                 .BeginFollowedBy().ANewLine().EndGroup()
+                                                 .ToString();
         }
     }
 }
