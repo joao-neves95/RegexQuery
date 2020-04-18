@@ -54,7 +54,7 @@ namespace RegexQuery
 
         #region PRIVATE METHODS
 
-        internal static string ValueBetween(char fromChar, char toChar)
+        internal static string CharsBetween(char fromChar, char toChar)
         {
             return $"[{fromChar}{Separators.ForwardSlash}{toChar}]";
         }

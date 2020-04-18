@@ -23,15 +23,15 @@ namespace RegexQuery
         public static IRegexQuery ADate(this IRegexQuery regexQueryBuilder, Separator separator = Separator.All)
         {
                                    // [0-3]?[0-9]
-            regexQueryBuilder.Query.Append( RegexTokens.ValueBetween( '0', '3' ) ).Append( '?' ).Append( RegexTokens.ValueBetween( '0', '9' ) )
+            regexQueryBuilder.Query.Append( RegexTokens.CharsBetween( '0', '3' ) ).Append( '?' ).Append( RegexTokens.CharsBetween( '0', '9' ) )
                                    // (\/|\.|-)
                                    .Append( "(" ).Append( Separators.Resolve( separator ) ).Append( ")" )
                                    // [0-3]?[0-9]
-                                   .Append( RegexTokens.ValueBetween( '0', '3' ) ).Append( '?' ).Append( RegexTokens.ValueBetween( '0', '9' ) )
+                                   .Append( RegexTokens.CharsBetween( '0', '3' ) ).Append( '?' ).Append( RegexTokens.CharsBetween( '0', '9' ) )
                                    // (\/|\.|-)
                                    .Append( "(" ).Append( Separators.Resolve( separator ) ).Append( ")" )
                                    // [1-9]\d{3}
-                                   .Append( RegexTokens.ValueBetween( '1', '9' ) ).Append( RegexTokens.Digit ).Append( RegexTokens.QuantityOfPreceding( 3 ) );
+                                   .Append( RegexTokens.CharsBetween( '1', '9' ) ).Append( RegexTokens.Digit ).Append( RegexTokens.QuantityOfPreceding( 3 ) );
 
             return regexQueryBuilder;
         }
