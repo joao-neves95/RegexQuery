@@ -5,4 +5,4 @@
  * (GPL-3.0), located in the root folder, under the name "LICENSE.md".
  *
  */
-//# sourceMappingURL=app.js.map
+
