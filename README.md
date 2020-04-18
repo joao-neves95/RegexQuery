@@ -36,7 +36,7 @@ public static void Main()
 
 #### npm
 
-`npm install regex-query`
+`npm install regex-query-js`
 
 #### Browser
 

@@ -8,7 +8,7 @@ Regular expressions in english.
 
 #### npm
 
-`npm install regex-query`
+`npm install regex-query-js`
 
 #### Browser
 
