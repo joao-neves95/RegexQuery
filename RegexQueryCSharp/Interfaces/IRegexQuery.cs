@@ -33,19 +33,46 @@ namespace RegexQueryCSharp.Interfaces
 
         IRegexQuery EndOfString();
 
+        IRegexQuery Group( string content );
+
+        IRegexQuery BeginGroup();
+
+        IRegexQuery EndGroup();
+
         /// <summary>
         ///
-        /// [<char><char><char>]
+        /// [<chars>]
         ///
         /// </summary>
         /// <param name="characters"></param>
         IRegexQuery AnyOf( char[] characters );
 
-        IRegexQuery ValueBetween( char fromChar, char toChar );
+        IRegexQuery AnyOf( string characters );
+
+        /// <summary>
+        ///
+        /// [^<chars>]
+        ///
+        /// </summary>
+        /// <param name="characters"></param>
+        /// <returns></returns>
+        IRegexQuery NotAnyOf( char[] characters );
+
+        IRegexQuery CharsBetween( char fromChar, char toChar );
+
+        IRegexQuery ButOnly( uint quantity );
 
         IRegexQuery ButOnlyOne();
 
-        IRegexQuery ButOnly( uint quantity );
+        IRegexQuery ButOnlyNoneOrOne();
+
+        IRegexQuery ButOnlyNoneOrMore();
+
+        IRegexQuery ButOnlyOneOrMore();
+
+        IRegexQuery ButOnlyBetween( uint fromCount, uint toCount );
+
+        IRegexQuery ButOnlyMoreThan( uint quantity );
 
         IRegexQuery Or();
 
@@ -56,7 +83,7 @@ namespace RegexQueryCSharp.Interfaces
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        IRegexQuery FollowedBy( string str );
+        IRegexQuery FollowedBy( string content );
 
         /// <summary>
         ///
@@ -65,7 +92,14 @@ namespace RegexQueryCSharp.Interfaces
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        IRegexQuery NotFollowedBy( string str );
+        IRegexQuery NotFollowedBy( string content );
 
+        IRegexQuery BeginFollowedBy();
+
+        IRegexQuery EndFollowedBy();
+
+        IRegexQuery BeginNotFollowedBy();
+
+        IRegexQuery EndNotFollowedBy();
     }
 }
