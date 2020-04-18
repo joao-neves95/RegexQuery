@@ -1,9 +1,20 @@
 {
-  "name": "regex-query-js",
-  "version": "0.0.0",
+  "name": "regex-query",
+  "version": "1.0.0",
   "description": "RegexQueryJS",
-  "main": "app.js",
+  "main": "index.js",
   "author": {
-    "name": ""
-  }
+    "name": "João Neves (SHIVAYL)",
+    "url": "https://github.com/joao-neves95"
+  },
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joao-neves95/RegexQuery"
+  },
+  "homepage": "https://github.com/joao-neves95/RegexQuery",
+  "bugs": {
+    "url": "https://github.com/joao-neves95/RegexQuery/issues"
+  },
+  "keywords": [ "regex", "easy regex", "regex builder" ]
 }
