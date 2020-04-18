@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <RootNamespace>RegexQueryCSharp</RootNamespace>
+    <RootNamespace>RegexQuery</RootNamespace>
+    <AssemblyName>RegexQuery</AssemblyName>
   </PropertyGroup>
 
 </Project>

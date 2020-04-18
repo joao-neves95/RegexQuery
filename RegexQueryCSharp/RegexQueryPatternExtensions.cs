@@ -6,11 +6,12 @@
  *
  */
 
-using RegexQueryCSharp.Interfaces;
-using RegexQueryCSharp.Constants;
-using RegexQueryCSharp.Enums;
+using RegexQuery.Interfaces;
+using RegexQuery.Constants;
+using RegexQuery.Enums;
 
-namespace RegexQueryCSharp
+/*
+namespace RegexQuery
 {
     public static class RegexQueryPatternExtensions
     {

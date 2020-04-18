@@ -15,7 +15,7 @@ using System.Text;
  *
  */
 
-namespace RegexQueryCSharp.Interfaces
+namespace RegexQuery.Interfaces
 {
     public interface IRegexQuery
     {

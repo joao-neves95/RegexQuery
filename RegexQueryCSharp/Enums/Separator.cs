@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RegexQueryCSharp.Enums
+namespace RegexQuery.Enums
 {
     public enum Separator
     {

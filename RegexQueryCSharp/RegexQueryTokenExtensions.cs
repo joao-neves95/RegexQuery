@@ -1,6 +1,6 @@
-using RegexQueryCSharp.Interfaces;
+using RegexQuery.Interfaces;
 
-namespace RegexQueryCSharp
+namespace RegexQuery
 {
     public static class RegexQueryTokenExtensions
     {

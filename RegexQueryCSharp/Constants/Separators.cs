@@ -9,11 +9,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RegexQueryCSharp.Interfaces;
-using RegexQueryCSharp.Enums;
+using RegexQuery.Interfaces;
+using RegexQuery.Enums;
 using System.Text.RegularExpressions;
 
-namespace RegexQueryCSharp.Constants
+namespace RegexQuery.Constants
 {
     public static class Separators
     {

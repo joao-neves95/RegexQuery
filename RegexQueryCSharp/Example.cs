@@ -9,9 +9,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RegexQueryCSharp.Interfaces;
+using RegexQuery.Interfaces;
 
-namespace RegexQueryCSharp
+namespace RegexQuery
 {
     internal class Example
     {

@@ -6,11 +6,11 @@
  *
  */
 
-using RegexQueryCSharp.Constants;
+using RegexQuery.Constants;
 
 using System;
 
-namespace RegexQueryCSharp
+namespace RegexQuery
 {
     public static class RegexTokens
     {
