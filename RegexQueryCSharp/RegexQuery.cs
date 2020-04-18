@@ -6,59 +6,58 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Bridge;
+using RegexQuery.Constants;
 using RegexQuery.Interfaces;
 
+//[assembly: Module( ModuleType.UMD, "RegexQuery" )]
+[assembly: Module(ModuleType.UMD, true,Name ="RegexQuery")]
 namespace RegexQuery
 {
-    public class RegexQuery : IRegexQuery
+    [Namespace(false)]
+    [Module( ModuleType.UMD, Name = "RegexQuery" )]
+    // Implements IRegexQueryActions
+    public partial class RegexQuery : IRegexQuery
     {
         public RegexQuery()
         {
-            this.Query = new StringBuilder();
+            this.Query = string.Empty;
         }
 
         private bool _openedGroup;
 
-        public StringBuilder Query { get; }
-
-        public override string ToString()
-        {
-            return this.Query.ToString();
-        }
+        public string Query { get; private set; }
 
         public IRegexQuery BeginningOfString()
         {
-            this.Query.Append( RegexTokens.StartOfString );
+            this.Query += RegexTokens.StartOfString;
             return this;
         }
 
         public IRegexQuery EndOfString()
         {
-            this.Query.Append( RegexTokens.EndOfString );
+            this.Query += RegexTokens.EndOfString;
             return this;
         }
 
         public IRegexQuery Group(string content)
         {
             this.BeginGroup();
-            this.Query.Append( content );
+            this.Query += content;
             this.EndGroup();
             return this;
         }
 
         public IRegexQuery BeginGroup()
         {
-            this.Query.Append( "(" );
+            this.Query += "(";
             this._openedGroup = true;
             return this;
         }
 
         public IRegexQuery EndGroup()
         {
-            this.Query.Append( ")" );
+            this.Query += ")";
             this._openedGroup = false;
             return this;
         }
@@ -70,80 +69,74 @@ namespace RegexQuery
 
         public IRegexQuery AnyOf(string characters)
         {
-            this.Query.Append( "[" ).Append( characters ).Append( "]" );
+            this.Query += $"[{characters}]";
             return this;
         }
 
         public IRegexQuery NotAnyOf(char[] characters)
         {
-            this.Query.Append( "[^" ).Append( characters ).Append( "]" );
+            this.Query += $"[^{characters}]";
             return this;
         }
 
         public IRegexQuery CharsBetween(char fromChar, char toChar)
         {
-            this.Query.Append( "[" )
-                      .Append( fromChar ).Append( "-" ).Append( toChar )
-                      .Append( "]" );
-
+            this.Query += $"[{fromChar}-{ toChar}]";
             return this;
         }
 
         public IRegexQuery ButOnly(uint quantity)
         {
-            this.Query.Append( "{" ).Append( quantity ).Append( "}" );
+            this.Query += $"{{{quantity}}}";
             return this;
         }
 
         public IRegexQuery ButOnlyOne()
         {
-            this.Query.Append( "{1}" );
+            this.Query += "{1}";
             return this;
         }
 
         public IRegexQuery ButOnlyNoneOrOne()
         {
-            this.Query.Append( "?" );
+            this.Query += "?";
             return this;
         }
 
         public IRegexQuery ButOnlyNoneOrMore()
         {
-            this.Query.Append( "*" );
+            this.Query += "*";
             return this;
         }
 
         public IRegexQuery ButOnlyOneOrMore()
         {
-            this.Query.Append( "+" );
+            this.Query += "+";
             return this;
         }
 
         public IRegexQuery ButOnlyBetween(uint fromCount, uint toCount)
         {
-            this.Query.Append( "{" )
-                      .Append( fromCount ).Append( "," ).Append( toCount )
-                      .Append( "}" );
-
+            this.Query += $"{{{fromCount},{toCount}}}";
             return this;
         }
 
         public IRegexQuery ButOnlyMoreThan(uint quantity)
         {
-            this.Query.Append( "{" ).Append( quantity ).Append( "," ).Append( "}" );
+            this.Query += $"{{{quantity},}}";
             return this;
         }
 
         public IRegexQuery Or()
         {
-            this.Query.Append( RegexTokens.Or );
+            this.Query += RegexTokens.Or;
             return this;
         }
 
         public IRegexQuery FollowedBy(string content)
         {
             this.BeginGroup();
-            this.Query.Append( RegexTokens.FollowedBy ).Append( content );
+            this.Query += RegexTokens.FollowedBy + content;
             this.EndGroup();
             return this;
         }
@@ -151,7 +144,7 @@ namespace RegexQuery
         public IRegexQuery NotFollowedBy(string content)
         {
             this.BeginGroup();
-            this.Query.Append( RegexTokens.NotFollowedBy ).Append( content );
+            this.Query += RegexTokens.NotFollowedBy + content;
             this.EndGroup();
             return this;
         }
@@ -159,7 +152,7 @@ namespace RegexQuery
         public IRegexQuery BeginFollowedBy()
         {
             this.BeginGroup();
-            this.Query.Append( RegexTokens.FollowedBy );
+            this.Query += RegexTokens.FollowedBy;
             return this;
         }
 
@@ -172,7 +165,7 @@ namespace RegexQuery
         public IRegexQuery BeginNotFollowedBy()
         {
             this.BeginGroup();
-            this.Query.Append( RegexTokens.NotFollowedBy );
+            this.Query += RegexTokens.NotFollowedBy;
             return this;
         }
 
