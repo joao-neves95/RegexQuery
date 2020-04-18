@@ -1,0 +1,9 @@
+{
+  "name": "regex-query-js",
+  "version": "0.0.0",
+  "description": "RegexQueryJS",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  }
+}

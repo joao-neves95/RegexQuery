@@ -18,7 +18,10 @@ namespace RegexQuery
         private void Main()
         {
             string regexQuery1 = new RegexQuery().ADate()
-                                                 .BeginFollowedBy().ANewLine().EndGroup()
+                                                 .BeginFollowedBy()
+                                                     .ASpace()
+                                                     .ANewLine()
+                                                 .EndGroup()
                                                  .ToString();
         }
     }
