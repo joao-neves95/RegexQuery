@@ -1,3 +1,9 @@
+/*
+ * @version   : 17.10.1 - Bridge.NET
+ * @author    : Object.NET, Inc. http://bridge.net/
+ * @copyright : Copyright 2008-2019 Object.NET, Inc. http://object.net/
+ * @license   : See license.txt and https://github.com/bridgedotnet/Bridge/blob/master/LICENSE.md.
+ */
 declare module Bridge {
     export type TypeRef<T> = { prototype: { valueOf(): T } | T };
     export function global<T>(): T;

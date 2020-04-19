@@ -30,6 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="dist\bridge\bridge.cleansed.js" />
+    <Content Include="dist\bridge\bridge.js" />
     <Content Include="dist\bridge\bridge.meta.js" />
     <Content Include="dist\bridge\bridge.meta.min.js" />
     <Content Include="dist\bridge\bridge.min.js" />
