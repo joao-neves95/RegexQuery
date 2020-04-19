@@ -1,5 +1,5 @@
 {
-	"uglify": false,
+	"uglify": true,
 	"mergerJsLinks": {
 		"npm": "https://www.npmjs.com/package/merger-js",
 		"github": "https://github.com/joao-neves95/merger-js",
