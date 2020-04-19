@@ -44,3 +44,140 @@ console.log( RegexTokens.NotWord );
 console.log( new RegexQuery().AnyOf$1( '#%&£§€' ).toString() );
 console.log( RegexTokens.NotWord );
 ```
+
+&nbsp;
+
+### API
+
+#### `new RegexQuery()`
+
+````js
+    // IRegexQueryActions
+
+    ToString(): string | null;
+
+    BeginningOfString(): IRegexQuery | null;
+
+    EndOfString(): IRegexQuery | null;
+
+    Group(content: string | null): IRegexQuery | null;
+
+    BeginGroup(): IRegexQuery | null;
+
+    EndGroup(): IRegexQuery | null;
+        
+    AnyOf(characters: number[] | null): IRegexQuery | null;
+
+    AnyOf$1(characters: string | null): IRegexQuery | null;
+        
+    NotAnyOf(characters: number[] | null): IRegexQuery | null;
+
+    CharsBetween(fromChar: number, toChar: number): IRegexQuery | null;
+
+    ButOnly(quantity: number): IRegexQuery | null;
+
+    ButOnlyOne(): IRegexQuery | null;
+
+    ButOnlyNoneOrOne(): IRegexQuery | null;
+
+    ButOnlyNoneOrMore(): IRegexQuery | null;
+
+    ButOnlyOneOrMore(): IRegexQuery | null;
+
+    ButOnlyBetween(fromCount: number, toCount: number):
+    IRegexQuery | null;
+
+    ButOnlyMoreThan(quantity: number): IRegexQuery | null;
+
+    Or(): IRegexQuery | null;
+
+    FollowedBy(content: string | null): IRegexQuery | null;
+        
+    NotFollowedBy(content: string | null): IRegexQuery | null;
+
+    BeginFollowedBy(): IRegexQuery | null;
+
+    EndFollowedBy(): IRegexQuery | null;
+
+    BeginNotFollowedBy(): IRegexQuery | null;
+
+    EndNotFollowedBy(): IRegexQuery | null;
+
+    // IRegexQueryTokens
+
+    ASpace(): IRegexQuery | null;
+
+    ADigit(): IRegexQuery | null;
+
+    AWord(): IRegexQuery | null;
+
+    NotAWord(): IRegexQuery | null;
+
+    ANewLine(): IRegexQuery | null;
+
+    AtStartOfString(): IRegexQuery | null;
+
+    AtEndOfString(): IRegexQuery | null;
+
+    ATab(): IRegexQuery | null;
+
+    ACarriageReturn(): IRegexQuery | null;
+
+    AWhiteSpace(): IRegexQuery | null;
+
+    NotAWhiteSpace(): IRegexQuery | null;
+
+    AnyCharExceptNewLine(): IRegexQuery | null;
+
+    AWordBoundary(): IRegexQuery | null;
+
+    NotAWordBoundary(): IRegexQuery | null;
+
+    // IRegexQueryPatterns
+
+    ADate(): IRegexQuery | null;
+
+    ADate$1(separator?: Separator): IRegexQuery | null;
+````
+
+&nbsp;
+
+#### `RegexTokens`
+
+(Constants)
+
+````js
+    StartOfString: string | null;
+
+    EndOfString: string | null;
+
+    AnyCharExceptNewLine: string | null;
+
+    Word: string | null;
+
+    NotWord: string | null;
+
+    Digit: string | null;
+
+    NotDigit: string | null;
+
+    WhiteSpace: string | null;
+
+    NotWhiteSpace: string | null;
+
+    Tab: string | null;
+
+    NewLine: string | null;
+
+    CarriageReturn: string | null;
+
+    WordBoundary: string | null;
+
+    NotWordBoundary: string | null;
+
+    FollowedBy: string | null;
+
+    NotFollowedBy: string | null;
+
+    Or: string | null;
+````
