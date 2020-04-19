@@ -6,5 +6,5 @@
  *
  */
 
-// @import './bridge/bridge.js'
+// @import './bridge/bridge.cleansed.js'
 // @import './bridge/RegexQuery.min.js'
