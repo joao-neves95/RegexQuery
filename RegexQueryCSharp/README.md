@@ -24,125 +24,136 @@ public static void Main()
 }
 ```
 
+&nbsp;
+
 ### API
 
+#### `new RegexQuery()`
+
 ````c
-        // IRegexQueryActions
+    // IRegexQueryActions
 
-        string ToString();
+    string ToString();
 
-        /// <summary>
-        ///
-        /// A string beginning with ("^").
-        ///
-        /// </summary>
-        /// <returns></returns>
-        IRegexQuery BeginningOfString();
+    IRegexQuery BeginningOfString();
 
-        IRegexQuery EndOfString();
+    IRegexQuery EndOfString();
 
-        IRegexQuery Group( string content );
+    IRegexQuery Group( string content );
 
-        IRegexQuery BeginGroup();
+    IRegexQuery BeginGroup();
 
-        IRegexQuery EndGroup();
+    IRegexQuery EndGroup();
 
-        /// <summary>
-        ///
-        /// [<chars>]
-        ///
-        /// </summary>
-        /// <param name="characters"></param>
-        IRegexQuery AnyOf( char[] characters );
+    IRegexQuery AnyOf( char[] characters );
 
-        IRegexQuery AnyOf( string characters );
+    IRegexQuery AnyOf( string characters );
 
-        /// <summary>
-        ///
-        /// [^<chars>]
-        ///
-        /// </summary>
-        /// <param name="characters"></param>
-        /// <returns></returns>
-        IRegexQuery NotAnyOf( char[] characters );
+    IRegexQuery NotAnyOf( char[] characters );
 
-        IRegexQuery CharsBetween( char fromChar, char toChar );
+    IRegexQuery CharsBetween( char fromChar, char toChar );
 
-        IRegexQuery ButOnly( uint quantity );
+    IRegexQuery ButOnly( uint quantity );
 
-        IRegexQuery ButOnlyOne();
+    IRegexQuery ButOnlyOne();
 
-        IRegexQuery ButOnlyNoneOrOne();
+    IRegexQuery ButOnlyNoneOrOne();
 
-        IRegexQuery ButOnlyNoneOrMore();
+    IRegexQuery ButOnlyNoneOrMore();
 
-        IRegexQuery ButOnlyOneOrMore();
+    IRegexQuery ButOnlyOneOrMore();
 
-        IRegexQuery ButOnlyBetween( uint fromCount, uint toCount );
+    IRegexQuery ButOnlyBetween( uint fromCount, uint toCount );
 
-        IRegexQuery ButOnlyMoreThan( uint quantity );
+    IRegexQuery ButOnlyMoreThan( uint quantity );
 
-        IRegexQuery Or();
+    IRegexQuery Or();
 
-        /// <summary>
-        ///
-        /// ("?="<something>)
-        ///
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        IRegexQuery FollowedBy( string content );
+    IRegexQuery FollowedBy( string content );
 
-        /// <summary>
-        ///
-        /// ("?!"<something>)
-        ///
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        IRegexQuery NotFollowedBy( string content );
+    IRegexQuery NotFollowedBy( string content );
 
-        IRegexQuery BeginFollowedBy();
+    IRegexQuery BeginFollowedBy();
 
-        IRegexQuery EndFollowedBy();
+    IRegexQuery EndFollowedBy();
 
-        IRegexQuery BeginNotFollowedBy();
+    IRegexQuery BeginNotFollowedBy();
 
-        IRegexQuery EndNotFollowedBy();
+    IRegexQuery EndNotFollowedBy();
 
-        // IRegexQueryTokens
+    // IRegexQueryTokens
 
-        IRegexQuery ASpace();
+    IRegexQuery ASpace();
 
-        IRegexQuery ADigit();
+    IRegexQuery ADigit();
 
-        IRegexQuery AWord();
+    IRegexQuery AWord();
 
-        IRegexQuery NotAWord();
+    IRegexQuery NotAWord();
 
-        IRegexQuery ANewLine();
+    IRegexQuery ANewLine();
 
-        IRegexQuery AtStartOfString();
+    IRegexQuery AtStartOfString();
 
-        IRegexQuery AtEndOfString();
+    IRegexQuery AtEndOfString();
 
-        IRegexQuery ATab();
+    IRegexQuery ATab();
 
-        IRegexQuery ACarriageReturn();
+    IRegexQuery ACarriageReturn();
 
-        IRegexQuery AWhiteSpace();
+    IRegexQuery AWhiteSpace();
 
-        IRegexQuery NotAWhiteSpace();
+    IRegexQuery NotAWhiteSpace();
 
-        IRegexQuery AnyCharExceptNewLine();
+    IRegexQuery AnyCharExceptNewLine();
 
-        IRegexQuery AWordBoundary();
+    IRegexQuery AWordBoundary();
 
-        IRegexQuery NotAWordBoundary();
+    IRegexQuery NotAWordBoundary();
 
-        // IRegexQueryPatterns
+    // IRegexQueryPatterns
 
-        IRegexQuery ADate();
+    IRegexQuery ADate();
 
-        IRegexQuery ADate( Separator separator = Separator.All );
+    IRegexQuery ADate( Separator separator = Separator.All );
+````
+
+#### `RegexTokens`
+
+(Constants)
+
+````c
+    string StartOfString;
+
+    string EndOfString;
+
+    string AnyCharExceptNewLine;
+
+    string Word;
+
+    string NotWord;
+
+    string Digit;
+
+    string NotDigit;
+
+    string WhiteSpace;
+
+    string NotWhiteSpace;
+
+    string Tab;
+
+    string NewLine;
+
+    string CarriageReturn;
+
+    string WordBoundary;
+
+    string NotWordBoundary;
+
+    string FollowedBy;
+
+    string NotFollowedBy;
+
+    string Or;
 ````
