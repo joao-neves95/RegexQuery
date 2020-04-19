@@ -10,6 +10,8 @@
   // "Formatted" generates non-minified .js files.
   "outputFormatting": "Both",
 
+  // "combineScripts": true,
+
   // Enable the Bridge Console.
   // Default is false.
   "console": {
@@ -19,13 +21,13 @@
   // Enable browser debugging of C# files.
   // Default is false.
   "sourceMap": {
-    "enabled": true
+    "enabled": false
   },
 
   // Set to true to disable Reflection metadata generation.
   // Default is false.
   "reflection": {
-    "disabled": false
+    "disabled": true
   },
 
   // Generate TypeScript Definition (.d.ts) files.
@@ -50,12 +52,12 @@
   // Default is "Managed"
   "rules": {
     "anonymousType": "Plain",
-    "arrayIndex": "Managed",
+    "arrayIndex": "Plain",
     "autoProperty": "Plain",
-    "boxing": "Managed",
+    "boxing": "Plain",
     "externalCast": "Plain",
     "inlineComment": "Plain",
-    "integer": "Managed",
+    "integer": "Plain",
     "lambda": "Plain"
   },
 
@@ -77,6 +79,6 @@
   "generateDocumentation": "Full",
 
   "loader": {
-    "type":  "CommonJS" //"ES6"
+    "type": "CommonJS" //"ES6"
   }
 }

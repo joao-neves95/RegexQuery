@@ -1,5 +1,5 @@
 {
-	"uglify": true,
+	"uglify": false,
 	"mergerJsLinks": {
 		"npm": "https://www.npmjs.com/package/merger-js",
 		"github": "https://github.com/joao-neves95/merger-js",
@@ -8,8 +8,8 @@
 	},
 	"autoBuild": false,
 	"notifications": false,
-	"updateOnLaunch": true,
-	"lastUpdateCheck": "2020-04-18T19:25:25.000Z",
+	"updateOnLaunch": false,
+	"lastUpdateCheck": "2020-04-19T11:47:42.000Z",
 	"sourceFiles": [
 		{
 			"source": "D:\\joao9\\odrive\\ISTEC\\DEV\\RegexQuery\\RegexQueryJS\\dist\\RegexQuery.header.js",

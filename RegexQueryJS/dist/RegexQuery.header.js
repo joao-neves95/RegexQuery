@@ -6,6 +6,5 @@
  *
  */
 
-// @import './bridge/bridge.min.js'
+// @import './bridge/bridge.js'
 // @import './bridge/RegexQuery.min.js'
-
