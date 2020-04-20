@@ -44,22 +44,17 @@ namespace RegexQuery.Constants
 
         public static string Resolve(Separator separator, bool regexEscape = true)
         {
-            string result = String.Empty;
-
-            if (separator == Separator.Dot || separator == Separator.All)
+            switch (separator)
             {
-                result += regexEscape ? Regex.Escape( Separators.Dot ) : Separators.Dot;
+                case Separator.Dot:
+                    return regexEscape ? Regex.Escape( Separators.Dot ) : Separators.Dot;
+                case Separator.ForwardSlash:
+                    return regexEscape ? Regex.Escape( Separators.ForwardSlash ) : Separators.ForwardSlash;
+                case Separator.Minus:
+                    return regexEscape ? Regex.Escape( Separators.Minus ) : Separators.Minus;
+                default:
+                    return String.Empty;
             }
-            else if (separator == Separator.ForwardSlash || separator == Separator.All)
-            {
-                result += regexEscape ? Regex.Escape( Separators.ForwardSlash ) : Separators.ForwardSlash;
-            }
-            else if (separator == Separator.Minus || separator == Separator.All)
-            {
-                result += regexEscape ? Regex.Escape( Separators.Minus ) : Separators.Minus;
-            }
-
-            return result;
         }
 
         // #endregions UTILITY METHODS

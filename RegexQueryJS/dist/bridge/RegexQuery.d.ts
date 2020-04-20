@@ -116,7 +116,7 @@ interface RegexTokensFunc extends Function {
      * @public
      * @memberof RegexTokens
      * @constant
-     * @default "\\t"
+     * @default "\\n"
      * @type string
      */
     NewLine: string | null;
@@ -152,7 +152,7 @@ interface RegexTokensFunc extends Function {
      * @public
      * @memberof RegexTokens
      * @constant
-     * @default "!="
+     * @default "?!="
      * @type string
      */
     FollowedBy: string | null;
@@ -178,8 +178,8 @@ interface RegexTokensFunc extends Function {
      * @static
      * @this RegexTokens
      * @memberof RegexTokens
-     * @param   {number}    fromChar    
-     * @param   {number}    toChar
+     * @param   {string}    fromChar    
+     * @param   {string}    toChar
      * @return  {string}
      */
     /**
@@ -295,6 +295,17 @@ interface IRegexQueryPatterns {
      */
     IRegexQueryPatterns$ADate$1(separator?: Separator): IRegexQuery | null;
     ADate$1(separator?: Separator): IRegexQuery | null;
+    /**
+     * @instance
+     * @abstract
+     * @public
+     * @this IRegexQueryPatterns
+     * @memberof IRegexQueryPatterns
+     * @param   {Array.<Separator>}    separator    If null, it defaults to All.
+     * @return  {IRegexQuery}
+     */
+    IRegexQueryPatterns$ADateSeparatedBy(separator?: Separator[] | null): IRegexQuery | null;
+    ADateSeparatedBy(separator?: Separator[] | null): IRegexQuery | null;
 }
 
 /**
@@ -694,6 +705,15 @@ interface RegexQuery extends IRegexQuery {
      * @return  {IRegexQuery}
      */
     ADate$1(separator?: Separator): IRegexQuery | null;
+    /**
+     * @instance
+     * @public
+     * @this RegexQuery
+     * @memberof RegexQuery
+     * @param   {Array.<Separator>}    separator
+     * @return  {IRegexQuery}
+     */
+    ADateSeparatedBy(separator?: Separator[] | null): IRegexQuery | null;
     /**
      * @instance
      * @public

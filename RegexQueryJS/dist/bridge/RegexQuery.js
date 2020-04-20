@@ -126,7 +126,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      * @public
                      * @memberof RegexQuery.RegexTokens
                      * @constant
-                     * @default "\\t"
+                     * @default "\\n"
                      * @type string
                      */
                     NewLine: null,
@@ -162,7 +162,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      * @public
                      * @memberof RegexQuery.RegexTokens
                      * @constant
-                     * @default "!="
+                     * @default "?!="
                      * @type string
                      */
                     FollowedBy: null,
@@ -197,11 +197,11 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                         this.WhiteSpace = "\\s";
                         this.NotWhiteSpace = "\\S";
                         this.Tab = "\\t";
-                        this.NewLine = "\\t";
+                        this.NewLine = "\\n";
                         this.CarriageReturn = "\\r";
                         this.WordBoundary = "\\b";
                         this.NotWordBoundary = "\\B";
-                        this.FollowedBy = "!=";
+                        this.FollowedBy = "?!=";
                         this.NotFollowedBy = "?!";
                         this.Or = "|";
                     }
@@ -211,12 +211,12 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      * @static
                      * @this RegexQuery.RegexTokens
                      * @memberof RegexQuery.RegexTokens
-                     * @param   {number}    fromChar    
-                     * @param   {number}    toChar
+                     * @param   {string}    fromChar    
+                     * @param   {string}    toChar
                      * @return  {string}
                      */
                     CharsBetween: function (fromChar, toChar) {
-                        return System.String.format("[{0}{1}{2}]", fromChar, RegexQuery.Separators.ForwardSlash, toChar);
+                        return System.String.format("[{0}{1}{2}]", fromChar, RegexQuery.Separators.Minus, toChar);
                     },
                     /**
                      * @static
@@ -309,17 +309,16 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      */
                     Resolve: function (separator, regexEscape) {
                         if (regexEscape === void 0) { regexEscape = true; }
-                        var result = "";
-
-                        if (separator === RegexQuery.Separator.Dot || separator === RegexQuery.Separator.All) {
-                            result = (result || "") + ((regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.Dot) : RegexQuery.Separators.Dot) || "");
-                        } else if (separator === RegexQuery.Separator.ForwardSlash || separator === RegexQuery.Separator.All) {
-                            result = (result || "") + ((regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.ForwardSlash) : RegexQuery.Separators.ForwardSlash) || "");
-                        } else if (separator === RegexQuery.Separator.Minus || separator === RegexQuery.Separator.All) {
-                            result = (result || "") + ((regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.Minus) : RegexQuery.Separators.Minus) || "");
+                        switch (separator) {
+                            case RegexQuery.Separator.Dot: 
+                                return regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.Dot) : RegexQuery.Separators.Dot;
+                            case RegexQuery.Separator.ForwardSlash: 
+                                return regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.ForwardSlash) : RegexQuery.Separators.ForwardSlash;
+                            case RegexQuery.Separator.Minus: 
+                                return regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.Minus) : RegexQuery.Separators.Minus;
+                            default: 
+                                return "";
                         }
-
-                        return result;
                     }
                 }
             }
@@ -503,6 +502,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                 "EndNotFollowedBy", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$EndNotFollowedBy",
                 "ADate", "RegexQuery$IRegexQueryPatterns$ADate",
                 "ADate$1", "RegexQuery$IRegexQueryPatterns$ADate$1",
+                "ADateSeparatedBy", "RegexQuery$IRegexQueryPatterns$ADateSeparatedBy",
                 "ASpace", "RegexQuery$IRegexQueryTokens$ASpace",
                 "ADigit", "RegexQuery$IRegexQueryTokens$ADigit",
                 "AWord", "RegexQuery$IRegexQueryTokens$AWord",
@@ -825,7 +825,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @return  {RegexQuery.IRegexQuery}
                  */
                 ADate: function () {
-                    return this.ADate$1(RegexQuery.Separator.All);
+                    return this.ADateSeparatedBy();
                 },
                 /**
                  * @instance
@@ -837,7 +837,27 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  */
                 ADate$1: function (separator) {
                     if (separator === void 0) { separator = 3; }
-                    this.Query = (this.Query || "") + (RegexQuery.RegexTokens.CharsBetween(48, 51) || "") + String.fromCharCode(63) + (RegexQuery.RegexTokens.CharsBetween(48, 57) || "") + "(" + (RegexQuery.Separators.Resolve(separator) || "") + ")" + (RegexQuery.RegexTokens.CharsBetween(48, 51) || "") + String.fromCharCode(63) + (RegexQuery.RegexTokens.CharsBetween(48, 57) || "") + "(" + (RegexQuery.Separators.Resolve(separator) || "") + ")" + (RegexQuery.RegexTokens.CharsBetween(49, 57) || "") + (RegexQuery.RegexTokens.Digit || "") + (RegexQuery.RegexTokens.QuantityOfPreceding(3) || "");
+                    if (separator === RegexQuery.Separator.All) {
+                        return this.ADateSeparatedBy();
+                    } else {
+                        return this.ADateSeparatedBy(System.Array.init([separator], RegexQuery.Separator));
+                    }
+                },
+                /**
+                 * @instance
+                 * @public
+                 * @this RegexQuery.RegexQuery
+                 * @memberof RegexQuery.RegexQuery
+                 * @param   {Array.<RegexQuery.Separator>}    separator
+                 * @return  {RegexQuery.IRegexQuery}
+                 */
+                ADateSeparatedBy: function (separator) {
+                    if (separator === void 0) { separator = null; }
+                    separator = separator == null ? System.Array.init([RegexQuery.Separator.ForwardSlash, RegexQuery.Separator.Dot, RegexQuery.Separator.Minus], RegexQuery.Separator) : separator;
+
+                    var separators = RegexQuery.Separators.Resolve$1(separator);
+
+                    this.Query = (this.Query || "") + (RegexQuery.RegexTokens.CharsBetween("0", "3") || "") + String.fromCharCode(63) + (RegexQuery.RegexTokens.CharsBetween("0", "9") || "") + "(" + (separators || "") + String.fromCharCode(41) + (RegexQuery.RegexTokens.CharsBetween("0", "3") || "") + String.fromCharCode(63) + (RegexQuery.RegexTokens.CharsBetween("0", "9") || "") + "(" + (separators || "") + String.fromCharCode(41) + (RegexQuery.RegexTokens.CharsBetween("1", "9") || "") + (RegexQuery.RegexTokens.Digit || "") + (RegexQuery.RegexTokens.QuantityOfPreceding(3) || "");
 
                     return this;
                 },

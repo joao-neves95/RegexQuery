@@ -18,5 +18,11 @@ namespace RegexQuery.Interfaces
         IRegexQuery ADate();
 
         IRegexQuery ADate( Separator separator = Separator.All );
+
+        /// <summary>
+        /// </summary>
+        /// <param name="separator"> If null, it defaults to All. </param>
+        /// <returns></returns>
+        IRegexQuery ADateSeparatedBy( Separator[] separator = null );
     }
 }
