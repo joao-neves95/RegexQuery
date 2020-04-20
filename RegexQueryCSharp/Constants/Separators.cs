@@ -30,16 +30,16 @@ namespace RegexQuery.Constants
 
         // #regions UTILITY METHODS
 
-        public static string Resolve(Separator[] separators, bool regexEscape = true)
+        public static string[] Resolve(Separator[] separators, bool regexEscape = true)
         {
-            StringBuilder result = new StringBuilder();
+            string[] result = new string[separators.Length];
 
             for (int i = 0; i < separators.Length; ++i)
             {
-                result.Append( Separators.Resolve( separators[i], regexEscape ) );
+                result[i] = Separators.Resolve( separators[i], regexEscape );
             }
 
-            return result.ToString();
+            return result;
         }
 
         public static string Resolve(Separator separator, bool regexEscape = true)
@@ -47,11 +47,11 @@ namespace RegexQuery.Constants
             switch (separator)
             {
                 case Separator.Dot:
-                    return regexEscape ? Regex.Escape( Separators.Dot ) : Separators.Dot;
+                    return regexEscape ? RegexTokens.Escape( Separators.Dot ) : Separators.Dot;
                 case Separator.ForwardSlash:
-                    return regexEscape ? Regex.Escape( Separators.ForwardSlash ) : Separators.ForwardSlash;
+                    return regexEscape ? RegexTokens.Escape( Separators.ForwardSlash ) : Separators.ForwardSlash;
                 case Separator.Minus:
-                    return regexEscape ? Regex.Escape( Separators.Minus ) : Separators.Minus;
+                    return regexEscape ? RegexTokens.Escape( Separators.Minus ) : Separators.Minus;
                 default:
                     return String.Empty;
             }

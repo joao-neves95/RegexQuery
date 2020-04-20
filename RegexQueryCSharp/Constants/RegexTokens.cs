@@ -64,6 +64,11 @@ namespace RegexQuery.Constants
             return $"{{{quantity}}}";
         }
 
+        internal static string Escape(string token)
+        {
+            return "\\" + token;
+        }
+
         #endregion PRIVATE METHODS
     }
 }

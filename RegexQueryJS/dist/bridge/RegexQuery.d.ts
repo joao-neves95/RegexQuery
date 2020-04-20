@@ -189,6 +189,13 @@ interface RegexTokensFunc extends Function {
      * @param   {number}    quantity
      * @return  {string}
      */
+    /**
+     * @static
+     * @this RegexTokens
+     * @memberof RegexTokens
+     * @param   {string}    token
+     * @return  {string}
+     */
 }
 declare var RegexTokens: RegexTokensFunc;
 
@@ -237,9 +244,9 @@ interface SeparatorsFunc extends Function {
      * @memberof Separators
      * @param   {Array.<Separator>}    separators     
      * @param   {boolean}              regexEscape
-     * @return  {string}
+     * @return  {Array.<string>}
      */
-    Resolve$1(separators: Separator[] | null, regexEscape?: boolean): string | null;
+    Resolve$1(separators: Separator[] | null, regexEscape?: boolean): string[] | null;
     /**
      * @static
      * @public

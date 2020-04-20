@@ -37,7 +37,7 @@ namespace RegexQuery
             separator = separator == null ? new Separator[] { Separator.ForwardSlash, Separator.Dot, Separator.Minus } :
                                             separator;
 
-            string separators = Separators.Resolve( separator );
+            string separators = Separators.Resolve( separator ).Join( RegexTokens.Or );
 
                           // [0-3]?[0-9]
             this.Query += RegexTokens.CharsBetween( "0", "3" ) + '?' + RegexTokens.CharsBetween( "0", "9" ) +

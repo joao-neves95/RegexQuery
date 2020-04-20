@@ -227,6 +227,16 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      */
                     QuantityOfPreceding: function (quantity) {
                         return System.String.format("{{{0}}}", [quantity]);
+                    },
+                    /**
+                     * @static
+                     * @this RegexQuery.RegexTokens
+                     * @memberof RegexQuery.RegexTokens
+                     * @param   {string}    token
+                     * @return  {string}
+                     */
+                    Escape: function (token) {
+                        return "\\" + (token || "");
                     }
                 }
             }
@@ -286,17 +296,17 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      * @memberof RegexQuery.Separators
                      * @param   {Array.<RegexQuery.Separator>}    separators     
                      * @param   {boolean}                         regexEscape
-                     * @return  {string}
+                     * @return  {Array.<string>}
                      */
                     Resolve$1: function (separators, regexEscape) {
                         if (regexEscape === void 0) { regexEscape = true; }
-                        var result = new System.Text.StringBuilder();
+                        var result = System.Array.init(separators.length, null, System.String);
 
                         for (var i = 0; i < separators.length; ++i) {
-                            result.append(RegexQuery.Separators.Resolve(separators[i], regexEscape));
+                            result[i] = RegexQuery.Separators.Resolve(separators[i], regexEscape);
                         }
 
-                        return result.toString();
+                        return result;
                     },
                     /**
                      * @static
@@ -311,11 +321,11 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                         if (regexEscape === void 0) { regexEscape = true; }
                         switch (separator) {
                             case RegexQuery.Separator.Dot: 
-                                return regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.Dot) : RegexQuery.Separators.Dot;
+                                return regexEscape ? RegexQuery.RegexTokens.Escape(RegexQuery.Separators.Dot) : RegexQuery.Separators.Dot;
                             case RegexQuery.Separator.ForwardSlash: 
-                                return regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.ForwardSlash) : RegexQuery.Separators.ForwardSlash;
+                                return regexEscape ? RegexQuery.RegexTokens.Escape(RegexQuery.Separators.ForwardSlash) : RegexQuery.Separators.ForwardSlash;
                             case RegexQuery.Separator.Minus: 
-                                return regexEscape ? System.Text.RegularExpressions.Regex.escape(RegexQuery.Separators.Minus) : RegexQuery.Separators.Minus;
+                                return regexEscape ? RegexQuery.RegexTokens.Escape(RegexQuery.Separators.Minus) : RegexQuery.Separators.Minus;
                             default: 
                                 return "";
                         }
@@ -855,7 +865,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                     if (separator === void 0) { separator = null; }
                     separator = separator == null ? System.Array.init([RegexQuery.Separator.ForwardSlash, RegexQuery.Separator.Dot, RegexQuery.Separator.Minus], RegexQuery.Separator) : separator;
 
-                    var separators = RegexQuery.Separators.Resolve$1(separator);
+                    var separators = RegexQuery.Separators.Resolve$1(separator).join(RegexQuery.RegexTokens.Or);
 
                     this.Query = (this.Query || "") + (RegexQuery.RegexTokens.CharsBetween("0", "3") || "") + String.fromCharCode(63) + (RegexQuery.RegexTokens.CharsBetween("0", "9") || "") + "(" + (separators || "") + String.fromCharCode(41) + (RegexQuery.RegexTokens.CharsBetween("0", "3") || "") + String.fromCharCode(63) + (RegexQuery.RegexTokens.CharsBetween("0", "9") || "") + "(" + (separators || "") + String.fromCharCode(41) + (RegexQuery.RegexTokens.CharsBetween("1", "9") || "") + (RegexQuery.RegexTokens.Digit || "") + (RegexQuery.RegexTokens.QuantityOfPreceding(3) || "");
 
