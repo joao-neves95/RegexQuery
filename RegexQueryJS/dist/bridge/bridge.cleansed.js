@@ -8620,7 +8620,8 @@
         var old = Bridge.Class.staticInitAllow;
 
         result = Bridge.define( name, {
-          $inherits: [System.Array, System.Collections.ICollection, System.ICloneable, System.Collections.Generic.IList$1( t ), System.Collections.Generic.IReadOnlyCollection$1( t )],
+          //$inherits: [System.Array, System.Collections.ICollection, System.ICloneable, System.Collections.Generic.IList$1( t ), System.Collections.Generic.IReadOnlyCollection$1( t )],
+          $inherits: [System.Array, System.ICloneable],
           $noRegister: true,
           statics: {
             $elementType: t,
