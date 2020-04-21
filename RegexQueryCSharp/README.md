@@ -35,9 +35,13 @@ public static void Main()
 
     string ToString();
 
+    IRegexQuery Clear();
+
     IRegexQuery BeginningOfString();
 
     IRegexQuery EndOfString();
+
+    IRegexQuery Content( string content );
 
     IRegexQuery Group( string content );
 
@@ -45,13 +49,13 @@ public static void Main()
 
     IRegexQuery EndGroup();
 
-    IRegexQuery AnyOf( char[] characters );
+    IRegexQuery AnyOf( string[] characters );
 
     IRegexQuery AnyOf( string characters );
 
-    IRegexQuery NotAnyOf( char[] characters );
+    IRegexQuery NotAnyOf( string[] characters );
 
-    IRegexQuery CharsBetween( char fromChar, char toChar );
+    IRegexQuery CharsBetween( string fromChar, string toChar );
 
     IRegexQuery ButOnly( uint quantity );
 
@@ -116,11 +120,11 @@ public static void Main()
     IRegexQuery ADate();
 
     IRegexQuery ADate( Separator separator = Separator.All );
+
+    IRegexQuery ADateSeparatedBy( Separator[] separator = null );
 ````
 
 #### `RegexTokens`
-
-(Constants)
 
 ````c
     string StartOfString;
@@ -156,4 +160,6 @@ public static void Main()
     string NotFollowedBy;
 
     string Or;
+
+    string Escape( string token );
 ````
