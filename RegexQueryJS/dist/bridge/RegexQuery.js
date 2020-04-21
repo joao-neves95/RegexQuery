@@ -211,6 +211,16 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      * @static
                      * @this RegexQuery.RegexTokens
                      * @memberof RegexQuery.RegexTokens
+                     * @param   {string}    token
+                     * @return  {string}
+                     */
+                    Escape: function (token) {
+                        return "\\" + (token || "");
+                    },
+                    /**
+                     * @static
+                     * @this RegexQuery.RegexTokens
+                     * @memberof RegexQuery.RegexTokens
                      * @param   {string}    fromChar    
                      * @param   {string}    toChar
                      * @return  {string}
@@ -232,11 +242,23 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      * @static
                      * @this RegexQuery.RegexTokens
                      * @memberof RegexQuery.RegexTokens
-                     * @param   {string}    token
+                     * @param   {number}    fromCount    
+                     * @param   {number}    toCount
                      * @return  {string}
                      */
-                    Escape: function (token) {
-                        return "\\" + (token || "");
+                    QuantityOfPrecedingBetween$1: function (fromCount, toCount) {
+                        return RegexQuery.RegexTokens.QuantityOfPrecedingBetween(Bridge.toString(fromCount), Bridge.toString(toCount));
+                    },
+                    /**
+                     * @static
+                     * @this RegexQuery.RegexTokens
+                     * @memberof RegexQuery.RegexTokens
+                     * @param   {string}    fromCount    
+                     * @param   {string}    toCount
+                     * @return  {string}
+                     */
+                    QuantityOfPrecedingBetween: function (fromCount, toCount) {
+                        return System.String.format("{{{0},{1}}}", fromCount, toCount);
                     }
                 }
             }
@@ -403,7 +425,16 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @return  {void}
                  */
                 Main: function () {
-                    var regexQuery1 = new RegexQuery.RegexQuery().ADate().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$BeginFollowedBy().RegexQuery$IRegexQueryTokens$ASpace().RegexQuery$IRegexQueryTokens$ANewLine().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$EndGroup().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ToString();
+                    var regexQuery = new RegexQuery.RegexQuery();
+
+                    var regexQuery1 = regexQuery.RegexQuery$IRegexQueryPatterns$ADate().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$BeginFollowedBy().RegexQuery$IRegexQueryTokens$ASpace().RegexQuery$IRegexQueryTokens$ANewLine().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$EndGroup().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ToString();
+
+                    regexQuery.RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Clear();
+
+                    var dateSeparators = regexQuery.RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Group((RegexQuery.RegexTokens.Escape("/") || "") + (RegexQuery.RegexTokens.Or || "") + (RegexQuery.RegexTokens.Escape(".") || "") + (RegexQuery.RegexTokens.Or || "") + (RegexQuery.RegexTokens.Escape("-") || "")).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ToString();
+                    regexQuery.RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Clear();
+
+                    var regexQuery2 = regexQuery.RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "3").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnlyNoneOrOne().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "9").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Content(dateSeparators).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "3").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnlyNoneOrOne().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "9").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Content(dateSeparators).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("1", "9").RegexQuery$IRegexQueryTokens$ADigit().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnly(3).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ToString();
                 }
             }
         });
@@ -487,13 +518,15 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
             alias: [
                 "Query", "RegexQuery$IRegexQuery$Query",
                 "toString", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ToString",
+                "Clear", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Clear",
                 "BeginningOfString", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$BeginningOfString",
                 "EndOfString", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$EndOfString",
+                "Content", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Content",
                 "Group", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Group",
                 "BeginGroup", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$BeginGroup",
                 "EndGroup", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$EndGroup",
-                "AnyOf", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$AnyOf",
                 "AnyOf$1", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$AnyOf$1",
+                "AnyOf", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$AnyOf",
                 "NotAnyOf", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$NotAnyOf",
                 "CharsBetween", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween",
                 "ButOnly", "RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnly",
@@ -560,6 +593,17 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @memberof RegexQuery.RegexQuery
                  * @return  {RegexQuery.IRegexQuery}
                  */
+                Clear: function () {
+                    this.Query = "";
+                    return this;
+                },
+                /**
+                 * @instance
+                 * @public
+                 * @this RegexQuery.RegexQuery
+                 * @memberof RegexQuery.RegexQuery
+                 * @return  {RegexQuery.IRegexQuery}
+                 */
                 BeginningOfString: function () {
                     this.Query = (this.Query || "") + (RegexQuery.RegexTokens.StartOfString || "");
                     return this;
@@ -583,9 +627,21 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @param   {string}                    content
                  * @return  {RegexQuery.IRegexQuery}
                  */
+                Content: function (content) {
+                    this.Query = (this.Query || "") + (content || "");
+                    return this;
+                },
+                /**
+                 * @instance
+                 * @public
+                 * @this RegexQuery.RegexQuery
+                 * @memberof RegexQuery.RegexQuery
+                 * @param   {string}                    content
+                 * @return  {RegexQuery.IRegexQuery}
+                 */
                 Group: function (content) {
                     this.BeginGroup();
-                    this.Query = (this.Query || "") + (content || "");
+                    this.Query = (this.Query || "") + (Bridge.toString(content) || "");
                     this.EndGroup();
                     return this;
                 },
@@ -618,11 +674,18 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @public
                  * @this RegexQuery.RegexQuery
                  * @memberof RegexQuery.RegexQuery
-                 * @param   {Array.<number>}            characters
+                 * @param   {Array.<string>}            characters
                  * @return  {RegexQuery.IRegexQuery}
                  */
-                AnyOf: function (characters) {
-                    return this.AnyOf$1(System.String.fromCharArray(characters));
+                AnyOf$1: function (characters) {
+                     let joinedCharacters = '';
+
+                    for (let i = 0; i < characters.length; ++i)
+                    {
+                        joinedCharacters += characters[i];
+                    }
+
+                    return this.AnyOf(joinedCharacters);
                 },
                 /**
                  * @instance
@@ -632,7 +695,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @param   {string}                    characters
                  * @return  {RegexQuery.IRegexQuery}
                  */
-                AnyOf$1: function (characters) {
+                AnyOf: function (characters) {
                     this.Query = (this.Query || "") + (System.String.format("[{0}]", [characters]) || "");
                     return this;
                 },
@@ -641,11 +704,11 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @public
                  * @this RegexQuery.RegexQuery
                  * @memberof RegexQuery.RegexQuery
-                 * @param   {Array.<number>}            characters
+                 * @param   {Array.<string>}            characters
                  * @return  {RegexQuery.IRegexQuery}
                  */
                 NotAnyOf: function (characters) {
-                    this.Query = (this.Query || "") + (System.String.format("[^{0}]", [characters]) || "");
+                    this.Query = (this.Query || "") + (System.String.format.apply(System.String, ["[^{0}]"].concat(characters)) || "");
                     return this;
                 },
                 /**
@@ -653,12 +716,12 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @public
                  * @this RegexQuery.RegexQuery
                  * @memberof RegexQuery.RegexQuery
-                 * @param   {number}                    fromChar    
-                 * @param   {number}                    toChar
+                 * @param   {string}                    fromChar    
+                 * @param   {string}                    toChar
                  * @return  {RegexQuery.IRegexQuery}
                  */
                 CharsBetween: function (fromChar, toChar) {
-                    this.Query = (this.Query || "") + (System.String.format("[{0}-{1}]", fromChar, toChar) || "");
+                    this.Query = (this.Query || "") + (RegexQuery.RegexTokens.CharsBetween(fromChar, toChar) || "");
                     return this;
                 },
                 /**
@@ -681,7 +744,8 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @return  {RegexQuery.IRegexQuery}
                  */
                 ButOnlyOne: function () {
-                    this.Query = (this.Query || "") + "{1}";
+                    this.Query = (this.Query || "") + (RegexQuery.RegexTokens.QuantityOfPreceding(1) || "");
+                    ;
                     return this;
                 },
                 /**
@@ -727,7 +791,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @return  {RegexQuery.IRegexQuery}
                  */
                 ButOnlyBetween: function (fromCount, toCount) {
-                    this.Query = (this.Query || "") + (System.String.format("{{{0},{1}}}", fromCount, toCount) || "");
+                    this.Query = (this.Query || "") + (RegexQuery.RegexTokens.QuantityOfPrecedingBetween$1(fromCount, toCount) || "");
                     return this;
                 },
                 /**
@@ -739,7 +803,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                  * @return  {RegexQuery.IRegexQuery}
                  */
                 ButOnlyMoreThan: function (quantity) {
-                    this.Query = (this.Query || "") + (System.String.format("{{{0},}}", [quantity]) || "");
+                    this.Query = (this.Query || "") + (RegexQuery.RegexTokens.QuantityOfPrecedingBetween(Bridge.toString(quantity), "") || "");
                     return this;
                 },
                 /**
