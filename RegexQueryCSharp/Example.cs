@@ -6,10 +6,8 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using RegexQuery.Interfaces;
+using RegexQuery.Constants;
 
 namespace RegexQuery
 {
@@ -17,12 +15,33 @@ namespace RegexQuery
     {
         private void Main()
         {
-            string regexQuery1 = new RegexQuery().ADate()
-                                                 .BeginFollowedBy()
-                                                     .ASpace()
-                                                     .ANewLine()
-                                                 .EndGroup()
-                                                 .ToString();
+            IRegexQuery regexQuery = new RegexQuery();
+
+            string regexQuery1 = regexQuery.ADate()
+                                           .BeginFollowedBy()
+                                               .ASpace()
+                                               .ANewLine()
+                                           .EndGroup()
+                                           .ToString();
+
+            regexQuery.Clear();
+
+            // Date:
+            string dateSeparators = regexQuery.Group(
+                                                  RegexTokens.Escape( "/" ) + RegexTokens.Or +
+                                                  RegexTokens.Escape( "." ) + RegexTokens.Or +
+                                                  RegexTokens.Escape( "-" )
+                                              ).ToString();
+            regexQuery.Clear();
+
+            string regexQuery2 = regexQuery.CharsBetween( "0", "3" ).ButOnlyNoneOrOne()
+                                           .CharsBetween( "0", "9" )
+                                           .Content( dateSeparators )
+                                           .CharsBetween( "0", "3" ).ButOnlyNoneOrOne()
+                                           .CharsBetween( "0", "9" )
+                                           .Content( dateSeparators )
+                                           .CharsBetween( "1", "9" ).ADigit().ButOnly( 3 )
+                                           .ToString();
         }
     }
 }
