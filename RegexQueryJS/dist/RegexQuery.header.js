@@ -6,5 +6,6 @@
  *
  */
 
+/// <reference path="./bridge/RegexQuery.d.ts" />
 // @import './bridge/bridge.cleansed.js'
 // @import './bridge/RegexQuery.min.js'
