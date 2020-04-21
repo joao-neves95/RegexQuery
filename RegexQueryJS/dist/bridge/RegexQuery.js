@@ -209,6 +209,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                 methods: {
                     /**
                      * @static
+                     * @public
                      * @this RegexQuery.RegexTokens
                      * @memberof RegexQuery.RegexTokens
                      * @param   {string}    token
@@ -434,7 +435,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                     var dateSeparators = regexQuery.RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Group((RegexQuery.RegexTokens.Escape("/") || "") + (RegexQuery.RegexTokens.Or || "") + (RegexQuery.RegexTokens.Escape(".") || "") + (RegexQuery.RegexTokens.Or || "") + (RegexQuery.RegexTokens.Escape("-") || "")).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ToString();
                     regexQuery.RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Clear();
 
-                    var regexQuery2 = regexQuery.RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "3").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnlyNoneOrOne().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "9").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Content(dateSeparators).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "3").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnlyNoneOrOne().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "9").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Content(dateSeparators).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("1", "9").RegexQuery$IRegexQueryTokens$ADigit().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnly(3).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ToString();
+                    var regexQuery2 = regexQuery.RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "3").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnlyNoneOrOne().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "9").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Content(dateSeparators).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "3").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnlyNoneOrOne().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("0", "9").RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$Content(dateSeparators).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$CharsBetween("1", "9").RegexQuery$IRegexQueryTokens$ADigit().RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ButOnly(3).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$NotFollowedBy(RegexQuery.RegexTokens.WhiteSpace).RegexQuery$RegexQuery$Interfaces$IRegexQueryActions$ToString();
                 }
             }
         });

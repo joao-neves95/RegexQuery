@@ -1,4 +1,3 @@
-/// <reference path="./bridge.d.ts" />
 /*
  * Copyright (c) 2020 João Pedro Martins Neves (SHIVAYL) - All Rights Reserved.
  *
@@ -7,6 +6,7 @@
  *
  */
 
+/// <reference path="./bridge.d.ts" />
 
 /** @namespace RegexQuery.Constants */
 
@@ -176,11 +176,13 @@ interface RegexTokensFunc extends Function {
     Or: string | null;
     /**
      * @static
+     * @public
      * @this RegexTokens
      * @memberof RegexTokens
      * @param   {string}    token
      * @return  {string}
      */
+    Escape(token: string | null): string | null;
     /**
      * @static
      * @this RegexTokens

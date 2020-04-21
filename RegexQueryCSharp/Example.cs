@@ -31,7 +31,8 @@ namespace RegexQuery
                                                   RegexTokens.Escape( "/" ) + RegexTokens.Or +
                                                   RegexTokens.Escape( "." ) + RegexTokens.Or +
                                                   RegexTokens.Escape( "-" )
-                                              ).ToString();
+                                              )
+                                              .ToString();
             regexQuery.Clear();
 
             string regexQuery2 = regexQuery.CharsBetween( "0", "3" ).ButOnlyNoneOrOne()
@@ -41,6 +42,7 @@ namespace RegexQuery
                                            .CharsBetween( "0", "9" )
                                            .Content( dateSeparators )
                                            .CharsBetween( "1", "9" ).ADigit().ButOnly( 3 )
+                                           .NotFollowedBy( RegexTokens.WhiteSpace )
                                            .ToString();
         }
     }

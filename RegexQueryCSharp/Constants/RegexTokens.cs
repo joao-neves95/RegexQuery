@@ -54,7 +54,7 @@ namespace RegexQuery.Constants
 
         #region PUBLIC METHODS
 
-        internal static string Escape(string token)
+        public static string Escape(string token)
         {
             return "\\" + token;
         }
