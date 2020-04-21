@@ -54,11 +54,15 @@ console.log( RegexTokens.NotWord );
 ````js
     // IRegexQueryActions
 
-    ToString(): string | null;
+    toString(): string | null;
+
+    Clear(): IRegexQuery | null;
 
     BeginningOfString(): IRegexQuery | null;
 
     EndOfString(): IRegexQuery | null;
+
+    Content(content: string | null): IRegexQuery | null;
 
     Group(content: string | null): IRegexQuery | null;
 
@@ -66,13 +70,13 @@ console.log( RegexTokens.NotWord );
 
     EndGroup(): IRegexQuery | null;
         
-    AnyOf(characters: number[] | null): IRegexQuery | null;
+    AnyOf$1(characters: string[] | null): IRegexQuery | null;
 
-    AnyOf$1(characters: string | null): IRegexQuery | null;
-        
-    NotAnyOf(characters: number[] | null): IRegexQuery | null;
+    AnyOf(characters: string | null): IRegexQuery | null;
 
-    CharsBetween(fromChar: number, toChar: number): IRegexQuery | null;
+    NotAnyOf(characters: string[] | null): IRegexQuery | null;
+
+    CharsBetween(fromChar: string | null, toChar: string | null): IRegexQuery | null;
 
     ButOnly(quantity: number): IRegexQuery | null;
 
@@ -138,6 +142,8 @@ console.log( RegexTokens.NotWord );
     ADate(): IRegexQuery | null;
 
     ADate$1(separator?: Separator): IRegexQuery | null;
+
+    ADateSeparatedBy(separator?: Separator[] | null): IRegexQuery | null;
 ````
 
 &nbsp;
@@ -180,4 +186,6 @@ console.log( RegexTokens.NotWord );
     NotFollowedBy: string | null;
 
     Or: string | null;
+
+    Escape(token: string | null): string | null;
 ````

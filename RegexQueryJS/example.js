@@ -41,12 +41,13 @@ const dateSeparators = regexQuery.Group(
 regexQuery.Clear();
 
 console.log(
-  regexQuery.CharsBetween( "0", "3" ).ButOnlyNoneOrOne()
-            .CharsBetween( "0", "9" )
+  regexQuery.CharsBetween( '0', '3' ).ButOnlyNoneOrOne()
+            .CharsBetween( '0', '9' )
             .Content( dateSeparators )
-            .CharsBetween( "0", "3" ).ButOnlyNoneOrOne()
-            .CharsBetween( "0", "9" )
+            .CharsBetween( '0', '3' ).ButOnlyNoneOrOne()
+            .CharsBetween( '0', '9' )
             .Content( dateSeparators )
-            .CharsBetween( "1", "9" ).ADigit().ButOnly( 3 )
+            .CharsBetween( '1', '9' ).ADigit().ButOnly( 3 )
+            .NotFollowedBy( RegexTokens.WhiteSpace )
             .toString()
 );

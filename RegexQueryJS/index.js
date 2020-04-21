@@ -6,4 +6,6 @@
  *
  */
 
+/// <reference path="./dist/bridge/RegexQuery.d.ts" />
+
 module.exports = { RegexQuery, RegexTokens } = require( './dist/RegexQuery.min.js' );
