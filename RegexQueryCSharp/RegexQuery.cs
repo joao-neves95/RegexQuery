@@ -31,6 +31,12 @@ namespace RegexQuery
             return Query;
         }
 
+        public IRegexQuery Clear()
+        {
+            this.Query = string.Empty;
+            return this;
+        }
+
         public IRegexQuery BeginningOfString()
         {
             this.Query += RegexTokens.StartOfString;
@@ -43,10 +49,16 @@ namespace RegexQuery
             return this;
         }
 
+        public IRegexQuery Content(string content)
+        {
+            this.Query += content;
+            return this;
+        }
+
         public IRegexQuery Group(string content)
         {
             this.BeginGroup();
-            this.Query += content;
+            this.Query += content.ToString();
             this.EndGroup();
             return this;
         }
@@ -65,9 +77,21 @@ namespace RegexQuery
             return this;
         }
 
-        public IRegexQuery AnyOf(char[] characters)
+        /* This attribute is to replace the C#
+         * on the JS/TS compilation.
+        */
+        [Script( @" let joinedCharacters = '';
+
+                    for (let i = 0; i < characters.length; ++i)
+                    {
+                        joinedCharacters += characters[i];
+                    }
+
+                    return this.AnyOf(joinedCharacters);"
+        )]
+        public IRegexQuery AnyOf(string[] characters)
         {
-            return this.AnyOf( new string( characters ) );
+            return this.AnyOf( characters.Join( "" ) );
         }
 
         public IRegexQuery AnyOf(string characters)
@@ -76,15 +100,15 @@ namespace RegexQuery
             return this;
         }
 
-        public IRegexQuery NotAnyOf(char[] characters)
+        public IRegexQuery NotAnyOf(string[] characters)
         {
             this.Query += $"[^{characters}]";
             return this;
         }
 
-        public IRegexQuery CharsBetween(char fromChar, char toChar)
+        public IRegexQuery CharsBetween(string fromChar, string toChar)
         {
-            this.Query += $"[{fromChar}-{ toChar}]";
+            this.Query += RegexTokens.CharsBetween( fromChar, toChar );
             return this;
         }
 
@@ -96,7 +120,7 @@ namespace RegexQuery
 
         public IRegexQuery ButOnlyOne()
         {
-            this.Query += "{1}";
+            this.Query += RegexTokens.QuantityOfPreceding( 1 );;
             return this;
         }
 
@@ -120,13 +144,13 @@ namespace RegexQuery
 
         public IRegexQuery ButOnlyBetween(uint fromCount, uint toCount)
         {
-            this.Query += $"{{{fromCount},{toCount}}}";
+            this.Query += RegexTokens.QuantityOfPrecedingBetween( fromCount, toCount );
             return this;
         }
 
         public IRegexQuery ButOnlyMoreThan(uint quantity)
         {
-            this.Query += $"{{{quantity},}}";
+            this.Query += RegexTokens.QuantityOfPrecedingBetween( quantity.ToString(), "" );
             return this;
         }
 

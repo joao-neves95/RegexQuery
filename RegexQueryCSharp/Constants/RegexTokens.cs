@@ -52,6 +52,15 @@ namespace RegexQuery.Constants
 
         #endregion PUBLIC PROPERTIES
 
+        #region PUBLIC METHODS
+
+        internal static string Escape(string token)
+        {
+            return "\\" + token;
+        }
+
+        #endregion PUBLIC METHODS
+
         #region PRIVATE METHODS
 
         internal static string CharsBetween(string fromChar, string toChar)
@@ -64,9 +73,14 @@ namespace RegexQuery.Constants
             return $"{{{quantity}}}";
         }
 
-        internal static string Escape(string token)
+        internal static string QuantityOfPrecedingBetween(uint fromCount, uint toCount)
         {
-            return "\\" + token;
+            return RegexTokens.QuantityOfPrecedingBetween( fromCount.ToString(), toCount.ToString() );
+        }
+
+        internal static string QuantityOfPrecedingBetween(string fromCount, string toCount)
+        {
+            return $"{{{fromCount},{toCount}}}";
         }
 
         #endregion PRIVATE METHODS

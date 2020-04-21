@@ -16,6 +16,8 @@ namespace RegexQuery.Interfaces
     {
         string ToString();
 
+        IRegexQuery Clear();
+
         /// <summary>
         ///
         /// A string beginning with ("^").
@@ -25,6 +27,8 @@ namespace RegexQuery.Interfaces
         IRegexQuery BeginningOfString();
 
         IRegexQuery EndOfString();
+
+        IRegexQuery Content( string content );
 
         IRegexQuery Group( string content );
 
@@ -38,7 +42,7 @@ namespace RegexQuery.Interfaces
         ///
         /// </summary>
         /// <param name="characters"></param>
-        IRegexQuery AnyOf( char[] characters );
+        IRegexQuery AnyOf( string[] characters );
 
         IRegexQuery AnyOf( string characters );
 
@@ -49,9 +53,9 @@ namespace RegexQuery.Interfaces
         /// </summary>
         /// <param name="characters"></param>
         /// <returns></returns>
-        IRegexQuery NotAnyOf( char[] characters );
+        IRegexQuery NotAnyOf( string[] characters );
 
-        IRegexQuery CharsBetween( char fromChar, char toChar );
+        IRegexQuery CharsBetween( string fromChar, string toChar );
 
         IRegexQuery ButOnly( uint quantity );
 
