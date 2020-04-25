@@ -162,7 +162,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                      * @public
                      * @memberof RegexQuery.RegexTokens
                      * @constant
-                     * @default "?!="
+                     * @default "?="
                      * @type string
                      */
                     FollowedBy: null,
@@ -201,7 +201,7 @@ Bridge.assembly("RegexQuery", function ($asm, globals) {
                         this.CarriageReturn = "\\r";
                         this.WordBoundary = "\\b";
                         this.NotWordBoundary = "\\B";
-                        this.FollowedBy = "?!=";
+                        this.FollowedBy = "?=";
                         this.NotFollowedBy = "?!";
                         this.Or = "|";
                     }

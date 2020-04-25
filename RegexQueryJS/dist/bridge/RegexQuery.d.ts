@@ -152,7 +152,7 @@ interface RegexTokensFunc extends Function {
      * @public
      * @memberof RegexTokens
      * @constant
-     * @default "?!="
+     * @default "?="
      * @type string
      */
     FollowedBy: string | null;
