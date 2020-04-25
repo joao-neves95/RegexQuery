@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/joao-neves95/RegexQuery</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>regex</PackageTags>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
