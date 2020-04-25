@@ -44,7 +44,7 @@ namespace RegexQuery.Constants
 
         public const string NotWordBoundary = @"\B";
 
-        public const string FollowedBy = "?!=";
+        public const string FollowedBy = "?=";
 
         public const string NotFollowedBy = "?!";
 
