@@ -36,7 +36,7 @@ namespace RegexQuery.Constants
 
         public const string Tab = @"\t";
 
-        public const string NewLine = @"\t";
+        public const string NewLine = @"\n";
 
         public const string CarriageReturn = @"\r";
 
@@ -44,7 +44,7 @@ namespace RegexQuery.Constants
 
         public const string NotWordBoundary = @"\B";
 
-        public const string FollowedBy = "!=";
+        public const string FollowedBy = "?=";
 
         public const string NotFollowedBy = "?!";
 
@@ -52,16 +52,35 @@ namespace RegexQuery.Constants
 
         #endregion PUBLIC PROPERTIES
 
+        #region PUBLIC METHODS
+
+        public static string Escape(string token)
+        {
+            return "\\" + token;
+        }
+
+        #endregion PUBLIC METHODS
+
         #region PRIVATE METHODS
 
-        internal static string CharsBetween(char fromChar, char toChar)
+        internal static string CharsBetween(string fromChar, string toChar)
         {
-            return $"[{fromChar}{Separators.ForwardSlash}{toChar}]";
+            return $"[{fromChar}{Separators.Minus}{toChar}]";
         }
 
         internal static string QuantityOfPreceding(uint quantity)
         {
             return $"{{{quantity}}}";
+        }
+
+        internal static string QuantityOfPrecedingBetween(uint fromCount, uint toCount)
+        {
+            return RegexTokens.QuantityOfPrecedingBetween( fromCount.ToString(), toCount.ToString() );
+        }
+
+        internal static string QuantityOfPrecedingBetween(string fromCount, string toCount)
+        {
+            return $"{{{fromCount},{toCount}}}";
         }
 
         #endregion PRIVATE METHODS

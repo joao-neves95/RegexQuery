@@ -1,4 +1,3 @@
-/// <reference path="./bridge.d.ts" />
 /*
  * Copyright (c) 2020 João Pedro Martins Neves (SHIVAYL) - All Rights Reserved.
  *
@@ -7,6 +6,7 @@
  *
  */
 
+/// <reference path="./bridge.d.ts" />
 
 /** @namespace RegexQuery.Constants */
 
@@ -116,7 +116,7 @@ interface RegexTokensFunc extends Function {
      * @public
      * @memberof RegexTokens
      * @constant
-     * @default "\\t"
+     * @default "\\n"
      * @type string
      */
     NewLine: string | null;
@@ -152,7 +152,7 @@ interface RegexTokensFunc extends Function {
      * @public
      * @memberof RegexTokens
      * @constant
-     * @default "!="
+     * @default "?!="
      * @type string
      */
     FollowedBy: string | null;
@@ -176,10 +176,19 @@ interface RegexTokensFunc extends Function {
     Or: string | null;
     /**
      * @static
+     * @public
      * @this RegexTokens
      * @memberof RegexTokens
-     * @param   {number}    fromChar    
-     * @param   {number}    toChar
+     * @param   {string}    token
+     * @return  {string}
+     */
+    Escape(token: string | null): string | null;
+    /**
+     * @static
+     * @this RegexTokens
+     * @memberof RegexTokens
+     * @param   {string}    fromChar    
+     * @param   {string}    toChar
      * @return  {string}
      */
     /**
@@ -187,6 +196,22 @@ interface RegexTokensFunc extends Function {
      * @this RegexTokens
      * @memberof RegexTokens
      * @param   {number}    quantity
+     * @return  {string}
+     */
+    /**
+     * @static
+     * @this RegexTokens
+     * @memberof RegexTokens
+     * @param   {number}    fromCount    
+     * @param   {number}    toCount
+     * @return  {string}
+     */
+    /**
+     * @static
+     * @this RegexTokens
+     * @memberof RegexTokens
+     * @param   {string}    fromCount    
+     * @param   {string}    toCount
      * @return  {string}
      */
 }
@@ -237,9 +262,9 @@ interface SeparatorsFunc extends Function {
      * @memberof Separators
      * @param   {Array.<Separator>}    separators     
      * @param   {boolean}              regexEscape
-     * @return  {string}
+     * @return  {Array.<string>}
      */
-    Resolve$1(separators: Separator[] | null, regexEscape?: boolean): string | null;
+    Resolve$1(separators: Separator[] | null, regexEscape?: boolean): string[] | null;
     /**
      * @static
      * @public
@@ -295,6 +320,17 @@ interface IRegexQueryPatterns {
      */
     IRegexQueryPatterns$ADate$1(separator?: Separator): IRegexQuery | null;
     ADate$1(separator?: Separator): IRegexQuery | null;
+    /**
+     * @instance
+     * @abstract
+     * @public
+     * @this IRegexQueryPatterns
+     * @memberof IRegexQueryPatterns
+     * @param   {Array.<Separator>}    separator    If null, it defaults to All.
+     * @return  {IRegexQuery}
+     */
+    IRegexQueryPatterns$ADateSeparatedBy(separator?: Separator[] | null): IRegexQuery | null;
+    ADateSeparatedBy(separator?: Separator[] | null): IRegexQuery | null;
 }
 
 /**
@@ -488,6 +524,14 @@ interface RegexQuery extends IRegexQuery {
      * @memberof RegexQuery
      * @return  {IRegexQuery}
      */
+    Clear(): IRegexQuery | null;
+    /**
+     * @instance
+     * @public
+     * @this RegexQuery
+     * @memberof RegexQuery
+     * @return  {IRegexQuery}
+     */
     BeginningOfString(): IRegexQuery | null;
     /**
      * @instance
@@ -497,6 +541,15 @@ interface RegexQuery extends IRegexQuery {
      * @return  {IRegexQuery}
      */
     EndOfString(): IRegexQuery | null;
+    /**
+     * @instance
+     * @public
+     * @this RegexQuery
+     * @memberof RegexQuery
+     * @param   {string}         content
+     * @return  {IRegexQuery}
+     */
+    Content(content: string | null): IRegexQuery | null;
     /**
      * @instance
      * @public
@@ -527,10 +580,10 @@ interface RegexQuery extends IRegexQuery {
      * @public
      * @this RegexQuery
      * @memberof RegexQuery
-     * @param   {Array.<number>}    characters
+     * @param   {Array.<string>}    characters
      * @return  {IRegexQuery}
      */
-    AnyOf(characters: number[] | null): IRegexQuery | null;
+    AnyOf$1(characters: string[] | null): IRegexQuery | null;
     /**
      * @instance
      * @public
@@ -539,26 +592,26 @@ interface RegexQuery extends IRegexQuery {
      * @param   {string}         characters
      * @return  {IRegexQuery}
      */
-    AnyOf$1(characters: string | null): IRegexQuery | null;
+    AnyOf(characters: string | null): IRegexQuery | null;
     /**
      * @instance
      * @public
      * @this RegexQuery
      * @memberof RegexQuery
-     * @param   {Array.<number>}    characters
+     * @param   {Array.<string>}    characters
      * @return  {IRegexQuery}
      */
-    NotAnyOf(characters: number[] | null): IRegexQuery | null;
+    NotAnyOf(characters: string[] | null): IRegexQuery | null;
     /**
      * @instance
      * @public
      * @this RegexQuery
      * @memberof RegexQuery
-     * @param   {number}         fromChar    
-     * @param   {number}         toChar
+     * @param   {string}         fromChar    
+     * @param   {string}         toChar
      * @return  {IRegexQuery}
      */
-    CharsBetween(fromChar: number, toChar: number): IRegexQuery | null;
+    CharsBetween(fromChar: string | null, toChar: string | null): IRegexQuery | null;
     /**
      * @instance
      * @public
@@ -694,6 +747,15 @@ interface RegexQuery extends IRegexQuery {
      * @return  {IRegexQuery}
      */
     ADate$1(separator?: Separator): IRegexQuery | null;
+    /**
+     * @instance
+     * @public
+     * @this RegexQuery
+     * @memberof RegexQuery
+     * @param   {Array.<Separator>}    separator
+     * @return  {IRegexQuery}
+     */
+    ADateSeparatedBy(separator?: Separator[] | null): IRegexQuery | null;
     /**
      * @instance
      * @public
@@ -858,6 +920,16 @@ declare namespace RegexQuery.Interfaces {
         RegexQuery$Interfaces$IRegexQueryActions$ToString(): string | null;
         ToString(): string | null;
         /**
+         * @instance
+         * @abstract
+         * @public
+         * @this RegexQuery.Interfaces.IRegexQueryActions
+         * @memberof RegexQuery.Interfaces.IRegexQueryActions
+         * @return  {IRegexQuery}
+         */
+        RegexQuery$Interfaces$IRegexQueryActions$Clear(): IRegexQuery | null;
+        Clear(): IRegexQuery | null;
+        /**
          * A string beginning with ("^").
          *
          * @instance
@@ -879,6 +951,17 @@ declare namespace RegexQuery.Interfaces {
          */
         RegexQuery$Interfaces$IRegexQueryActions$EndOfString(): IRegexQuery | null;
         EndOfString(): IRegexQuery | null;
+        /**
+         * @instance
+         * @abstract
+         * @public
+         * @this RegexQuery.Interfaces.IRegexQueryActions
+         * @memberof RegexQuery.Interfaces.IRegexQueryActions
+         * @param   {string}         content
+         * @return  {IRegexQuery}
+         */
+        RegexQuery$Interfaces$IRegexQueryActions$Content(content: string | null): IRegexQuery | null;
+        Content(content: string | null): IRegexQuery | null;
         /**
          * @instance
          * @abstract
@@ -911,8 +994,8 @@ declare namespace RegexQuery.Interfaces {
         RegexQuery$Interfaces$IRegexQueryActions$EndGroup(): IRegexQuery | null;
         EndGroup(): IRegexQuery | null;
         
-        RegexQuery$Interfaces$IRegexQueryActions$AnyOf(characters: number[] | null): IRegexQuery | null;
-        AnyOf(characters: number[] | null): IRegexQuery | null;
+        RegexQuery$Interfaces$IRegexQueryActions$AnyOf$1(characters: string[] | null): IRegexQuery | null;
+        AnyOf$1(characters: string[] | null): IRegexQuery | null;
         /**
          * @instance
          * @abstract
@@ -922,23 +1005,23 @@ declare namespace RegexQuery.Interfaces {
          * @param   {string}         characters
          * @return  {IRegexQuery}
          */
-        RegexQuery$Interfaces$IRegexQueryActions$AnyOf$1(characters: string | null): IRegexQuery | null;
-        AnyOf$1(characters: string | null): IRegexQuery | null;
+        RegexQuery$Interfaces$IRegexQueryActions$AnyOf(characters: string | null): IRegexQuery | null;
+        AnyOf(characters: string | null): IRegexQuery | null;
         
-        RegexQuery$Interfaces$IRegexQueryActions$NotAnyOf(characters: number[] | null): IRegexQuery | null;
-        NotAnyOf(characters: number[] | null): IRegexQuery | null;
+        RegexQuery$Interfaces$IRegexQueryActions$NotAnyOf(characters: string[] | null): IRegexQuery | null;
+        NotAnyOf(characters: string[] | null): IRegexQuery | null;
         /**
          * @instance
          * @abstract
          * @public
          * @this RegexQuery.Interfaces.IRegexQueryActions
          * @memberof RegexQuery.Interfaces.IRegexQueryActions
-         * @param   {number}         fromChar    
-         * @param   {number}         toChar
+         * @param   {string}         fromChar    
+         * @param   {string}         toChar
          * @return  {IRegexQuery}
          */
-        RegexQuery$Interfaces$IRegexQueryActions$CharsBetween(fromChar: number, toChar: number): IRegexQuery | null;
-        CharsBetween(fromChar: number, toChar: number): IRegexQuery | null;
+        RegexQuery$Interfaces$IRegexQueryActions$CharsBetween(fromChar: string | null, toChar: string | null): IRegexQuery | null;
+        CharsBetween(fromChar: string | null, toChar: string | null): IRegexQuery | null;
         /**
          * @instance
          * @abstract

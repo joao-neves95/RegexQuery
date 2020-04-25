@@ -1,4 +1,11 @@
-// @source Init.js
+/**
+ * @version   : 17.10.1 - Bridge.NET
+ * @author    : Object.NET, Inc. http://bridge.net/
+ * @copyright : Copyright 2008-2019 Object.NET, Inc. http://object.net/
+ * @license   : See license.txt and https://github.com/bridgedotnet/Bridge/blob/master/LICENSE.md
+ */
+
+    // @source Init.js
 
 (function (globals) {
     "use strict";

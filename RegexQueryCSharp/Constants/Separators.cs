@@ -30,36 +30,31 @@ namespace RegexQuery.Constants
 
         // #regions UTILITY METHODS
 
-        public static string Resolve(Separator[] separators, bool regexEscape = true)
+        public static string[] Resolve(Separator[] separators, bool regexEscape = true)
         {
-            StringBuilder result = new StringBuilder();
+            string[] result = new string[separators.Length];
 
             for (int i = 0; i < separators.Length; ++i)
             {
-                result.Append( Separators.Resolve( separators[i], regexEscape ) );
+                result[i] = Separators.Resolve( separators[i], regexEscape );
             }
 
-            return result.ToString();
+            return result;
         }
 
         public static string Resolve(Separator separator, bool regexEscape = true)
         {
-            string result = String.Empty;
-
-            if (separator == Separator.Dot || separator == Separator.All)
+            switch (separator)
             {
-                result += regexEscape ? Regex.Escape( Separators.Dot ) : Separators.Dot;
+                case Separator.Dot:
+                    return regexEscape ? RegexTokens.Escape( Separators.Dot ) : Separators.Dot;
+                case Separator.ForwardSlash:
+                    return regexEscape ? RegexTokens.Escape( Separators.ForwardSlash ) : Separators.ForwardSlash;
+                case Separator.Minus:
+                    return regexEscape ? RegexTokens.Escape( Separators.Minus ) : Separators.Minus;
+                default:
+                    return String.Empty;
             }
-            else if (separator == Separator.ForwardSlash || separator == Separator.All)
-            {
-                result += regexEscape ? Regex.Escape( Separators.ForwardSlash ) : Separators.ForwardSlash;
-            }
-            else if (separator == Separator.Minus || separator == Separator.All)
-            {
-                result += regexEscape ? Regex.Escape( Separators.Minus ) : Separators.Minus;
-            }
-
-            return result;
         }
 
         // #endregions UTILITY METHODS

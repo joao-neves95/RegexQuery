@@ -6,7 +6,6 @@
  *
  */
 
-using Bridge;
 using RegexQuery.Interfaces;
 using RegexQuery.Constants;
 using RegexQuery.Enums;
@@ -18,21 +17,38 @@ namespace RegexQuery
     {
         public IRegexQuery ADate()
         {
-            return this.ADate( Separator.All );
+            return this.ADateSeparatedBy();
         }
 
         public IRegexQuery ADate(Separator separator = Separator.All)
         {
+            if (separator == Separator.All)
+            {
+                return this.ADateSeparatedBy();
+            }
+            else
+            {
+                return this.ADateSeparatedBy( new Separator[] { separator } );
+            }
+        }
+
+        public IRegexQuery ADateSeparatedBy(Separator[] separator = null)
+        {
+            separator = separator == null ? new Separator[] { Separator.ForwardSlash, Separator.Dot, Separator.Minus } :
+                                            separator;
+
+            string separators = Separators.Resolve( separator ).Join( RegexTokens.Or );
+
                           // [0-3]?[0-9]
-            this.Query += RegexTokens.CharsBetween( '0', '3' ) + '?' + RegexTokens.CharsBetween( '0', '9' ) +
+            this.Query += RegexTokens.CharsBetween( "0", "3" ) + '?' + RegexTokens.CharsBetween( "0", "9" ) +
                           // (\/|\.|-)
-                          "(" + Separators.Resolve( separator ) + ")" +
+                          "(" + separators + ')' +
                           // [0-3]?[0-9]
-                          RegexTokens.CharsBetween( '0', '3' ) + '?' + RegexTokens.CharsBetween( '0', '9' ) +
+                          RegexTokens.CharsBetween( "0", "3" ) + '?' + RegexTokens.CharsBetween( "0", "9" ) +
                           // (\/|\.|-)
-                          "(" + Separators.Resolve( separator ) + ")" +
+                          "(" + separators + ')' +
                           // [1-9]\d{3}
-                          RegexTokens.CharsBetween( '1', '9' ) + RegexTokens.Digit + RegexTokens.QuantityOfPreceding( 3 );
+                          RegexTokens.CharsBetween( "1", "9" ) + RegexTokens.Digit + RegexTokens.QuantityOfPreceding( 3 );
 
             return this;
         }

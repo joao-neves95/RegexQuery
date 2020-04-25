@@ -1,4 +1,11 @@
-var $m = Bridge.setMetadata,
+/**
+ * @version   : 17.10.1 - Bridge.NET
+ * @author    : Object.NET, Inc. http://bridge.net/
+ * @copyright : Copyright 2008-2019 Object.NET, Inc. http://object.net/
+ * @license   : See license.txt and https://github.com/bridgedotnet/Bridge/blob/master/LICENSE.md
+ */
+
+    var $m = Bridge.setMetadata,
         $n = ["System","System.Globalization","System.Threading","System.Runtime.Serialization","System.Collections.Generic","System.Collections.ObjectModel","System.Collections","System.Text","System.Net.WebSockets","System.Threading.Tasks","System.Text.RegularExpressions","System.Reflection","System.Runtime.CompilerServices","System.IO","System.ComponentModel","Bridge"];
     $m("System.ApplicationException", function () { return {"att":1056769,"a":2,"at":[new System.SerializableAttribute()],"m":[{"a":2,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":".ctor","t":1,"p":[$n[0].String],"pi":[{"n":"message","pt":$n[0].String,"ps":0}],"sn":"$ctor1"},{"a":2,"n":".ctor","t":1,"p":[$n[0].String,$n[0].Exception],"pi":[{"n":"message","pt":$n[0].String,"ps":0},{"n":"innerException","pt":$n[0].Exception,"ps":1}],"sn":"$ctor2"}]}; }, $n);
     $m("System.ArgumentException", function () { return {"att":1056769,"a":2,"at":[new System.SerializableAttribute()],"m":[{"a":2,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":".ctor","t":1,"p":[$n[0].String],"pi":[{"n":"message","pt":$n[0].String,"ps":0}],"sn":"$ctor1"},{"a":2,"n":".ctor","t":1,"p":[$n[0].String,$n[0].Exception],"pi":[{"n":"message","pt":$n[0].String,"ps":0},{"n":"innerException","pt":$n[0].Exception,"ps":1}],"sn":"$ctor2"},{"a":2,"n":".ctor","t":1,"p":[$n[0].String,$n[0].String],"pi":[{"n":"message","pt":$n[0].String,"ps":0},{"n":"paramName","pt":$n[0].String,"ps":1}],"sn":"$ctor3"},{"a":2,"n":".ctor","t":1,"p":[$n[0].String,$n[0].String,$n[0].Exception],"pi":[{"n":"message","pt":$n[0].String,"ps":0},{"n":"paramName","pt":$n[0].String,"ps":1},{"n":"innerException","pt":$n[0].Exception,"ps":2}],"sn":"$ctor4"},{"ov":true,"a":2,"n":"Message","t":16,"rt":$n[0].String,"g":{"ov":true,"a":2,"n":"get_Message","t":8,"rt":$n[0].String,"fg":"Message"},"fn":"Message"},{"v":true,"a":2,"n":"ParamName","t":16,"rt":$n[0].String,"g":{"v":true,"a":2,"n":"get_ParamName","t":8,"rt":$n[0].String,"fg":"ParamName"},"fn":"ParamName"},{"a":1,"n":"_paramName","t":4,"rt":$n[0].String,"sn":"_paramName"}]}; }, $n);
