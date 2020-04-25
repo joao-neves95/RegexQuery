@@ -8,6 +8,8 @@ Regular expressions in english.
 
 #### npm
 
+[npm](https://www.npmjs.com/package/regex-query-js)
+
 `npm install regex-query-js`
 
 #### Browser
