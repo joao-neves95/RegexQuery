@@ -8,6 +8,8 @@ Regular expressions in english.
 
 ### Installing
 
+[nugget](https://www.nuget.org/packages/RegexQuery)
+
 `dotnet add package RegexQuery`
 
 &nbsp;
