@@ -23,18 +23,44 @@ Use the file "`dist/RegexQuery.min.js`" inside the npm package.
 ```js
 const { RegexQuery, RegexTokens } = require( 'regex-query' );
 
-console.log( new RegexQuery().AnyOf$1( '#%&£§€' ).toString() );
+console.log( RegexTokens.NotWord );
+
+const regexQuery = new RegexQuery();
+
+console.log( regexQuery.AnyOf$1( '#%&£§€' ).toString() );
+regexQuery.Clear();
 
 console.log(
-  new RegexQuery().ADate()
-                  .BeginFollowedBy()
-                    .ASpace()
-                    .ANewLine()
-                  .EndGroup()
-                  .toString()
+  regexQuery.ADate()
+            .BeginFollowedBy()
+              .ASpace()
+              .ANewLine()
+            .EndGroup()
+            .toString()
 );
+regexQuery.Clear();
 
-console.log( RegexTokens.NotWord );
+// Date:
+const dateSeparators = regexQuery.Group(
+                                   RegexTokens.Escape( "/" ) + RegexTokens.Or +
+                                   RegexTokens.Escape( "." ) + RegexTokens.Or +
+                                   RegexTokens.Escape( "-" )
+                                 )
+                                 .toString();
+
+regexQuery.Clear();
+
+console.log(
+  regexQuery.CharsBetween( '0', '3' ).ButOnlyNoneOrOne()
+            .CharsBetween( '0', '9' )
+            .Content( dateSeparators )
+            .CharsBetween( '0', '3' ).ButOnlyNoneOrOne()
+            .CharsBetween( '0', '9' )
+            .Content( dateSeparators )
+            .CharsBetween( '1', '9' ).ADigit().ButOnly( 3 )
+            .NotFollowedBy( RegexTokens.WhiteSpace )
+            .toString()
+);
 
 ```
 
