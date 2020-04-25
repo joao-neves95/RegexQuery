@@ -26,6 +26,10 @@ public static void Main()
 }
 ```
 
+### API
+
+[C# API README](https://github.com/joao-neves95/RegexQuery/blob/master/RegexQueryCSharp/README.md)
+
 &nbsp;
 
 ---
@@ -72,3 +76,7 @@ console.log( RegexTokens.NotWord );
 console.log( new RegexQuery().AnyOf$1( '#%&£§€' ).toString() );
 console.log( RegexTokens.NotWord );
 ```
+
+### API
+
+[JavaScript/Typescript API README](https://github.com/joao-neves95/RegexQuery/blob/master/RegexQueryJS/README.md)
